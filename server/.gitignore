@@ -1,0 +1,9 @@
+/.vscode
+/jsconfig.json
+/node_modules
+
+.env
+/package-lock.json
+
+/dev.bat
+.vercel

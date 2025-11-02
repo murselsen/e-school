@@ -1,0 +1,126 @@
+.Sidebar {
+    flex: 1;
+    background: linear-gradient(180deg, rgb(123, 0, 255, 0.75), 50%, rgb(255, 0, 200, 0.75));
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    outline: none;
+    border: none;
+    padding: 50px 8px;
+    box-shadow: 0px 0px 20px 15px rgba(123, 0, 255, 0.582);
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.Sidebar .SidebarHr {
+    --borderColor: rgba(255, 255, 255, 0.384);
+    width: 70%;
+    height: 3px;
+    background-color: var(--borderColor);
+    border-color: var(--borderColor);
+    border: none;
+}
+
+
+.Sidebar .Header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+
+    color: white;
+    padding-inline: 20px;
+    text-align: center;
+    height: 150px;
+}
+
+.Sidebar .Header .AppLogo {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    object-fit: cover;
+    background-color: white;
+
+}
+
+.Sidebar .Header .AppLogo:hover {
+    padding: 5px;
+    border: 2px solid white;
+    box-shadow: 0px 0px 10px 5px rgba(255, 255, 255, 0.582);
+}
+
+.Sidebar .Header .AppName {
+    line-height: 20px;
+    font-size: 17px;
+    text-transform: capitalize;
+    font-weight: 200;
+}
+
+.Sidebar .NavList {
+    list-style: none;
+    padding: 0 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.Sidebar .NavList .NavItem {
+    background-color: rgba(255, 255, 255, 0.288);
+    color: white;
+    border-radius: 10px;
+}
+
+.Sidebar .NavList .NavItem:hover {
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.2);
+    /* color: black; */
+}
+
+.Sidebar .NavList .NavItem .NavLink {
+    text-decoration: none;
+    color: inherit;
+    font-weight: 500;
+    text-transform: capitalize;
+    font-size: 14px;
+    text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.882);
+    display: block;
+    padding: 15px 15px;
+}
+
+
+
+@media (max-width: 768px) {
+    .Sidebar {
+        display: none;
+        flex: 2;
+        padding: 30px 5px;
+        border-top-right-radius: 20px;
+        border-bottom-right-radius: 20px;
+        box-shadow: 0px 0px 15px 10px rgba(123, 0, 255, 0.582);
+    }
+
+    .Sidebar .Header {
+        height: 120px;
+        padding-inline: 10px;
+    }
+
+    .Sidebar .Header .AppLogo {
+        width: 60px;
+        height: 60px;
+    }
+
+    .Sidebar .Header .AppName {
+        font-size: 15px;
+    }
+
+    .Sidebar .NavList {
+        gap: 10px;
+    }
+
+    .Sidebar .NavList .NavItem .NavLink {
+        font-size: 13px;
+        padding: 10px 10px;
+    }
+}

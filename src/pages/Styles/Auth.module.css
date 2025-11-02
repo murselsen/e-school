@@ -1,0 +1,248 @@
+@import url("./Page.module.css");
+
+.Page .InfoBox {
+    flex: 1;
+    background-color: rgba(250, 249, 250, 0.300);
+    box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    text-align: center;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.Page .InfoBox:hover {
+    background-color: #faf9fa;
+    color: black;
+}
+
+
+
+.Page .InfoBox .InfoContent {
+    width: max-content;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    line-height: 35px;
+
+}
+
+.Page .InfoBox .InfoContent .InfoTitle {
+    background-color: transparent;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.Page .InfoBox .InfoContent .InfoLink {
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #7b00ff;
+    font-weight: 500;
+    font-size: 18px;
+    padding: 8px 15px;
+
+    border-radius: 8px;
+    background-color: rgba(250, 249, 250, 0.300);
+    box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.75);
+}
+
+.Page .FormBox {
+    flex: 2.5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Page .FormBox .FormArea {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 500px;
+    padding: 40px 50px;
+    background-color: #2c004b9d;
+    display: flex;
+    flex-direction: column;
+    border-radius: 40px;
+    box-shadow: inset 0px 0px 20px 20px rgba(212, 0, 211, 0.3);
+    color: #ffffff;
+    backdrop-filter: blur(0.5px);
+    border: 3px solid rgba(46, 23, 139)
+}
+
+.Page .FormBox .FormArea .FormHeader {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    /* gap: 20px; */
+    color: white;
+    margin-bottom: 30px;
+}
+
+.Page .FormBox .FormArea .FormHeader .FormTitle {
+    flex: 2;
+
+    font-size: 28px;
+    font-weight: 600;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.Page .FormBox .FormArea .Form {
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+    margin-top: 2dvb;
+}
+
+.Form .FormTypeSelector {
+    flex: 1;
+    display: flex;
+    justify-content: space-around;
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.Form .FormTypeSelector .FormTypeSelector_Btn {
+    flex: 1;
+    padding: 10px 0px;
+    font-size: 16px;
+    text-transform: capitalize;
+    letter-spacing: 1.5px;
+    border: none;
+    color: white;
+    background-color: transparent;
+    /* background: linear-gradient(90deg, #7b00ff, 70%, #ff00c8); */
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    align-items: center;
+}
+
+.Form .FormTypeSelector .FormTypeSelector_Btn.Active {
+    background: linear-gradient(90deg, #7b00ff, 70%, #ff00c8);
+    color: white;
+    /* box-shadow: 0 0 15px 5px rgba(255, 0, 200, 0.5); */
+    transition: all 0.3s ease;
+}
+
+.Form .FormGroup {
+    /* border: 1px solid white; */
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.Form .FormGroup .FormGroup_Label {
+    font-size: 17px;
+    font-weight: 500;
+    font-style: bolder;
+}
+
+.Form .FormGroup .FormGroup_Box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-inline-start: 10px;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.Form .FormGroup .FormGroup_Box .FormGroup_Box_Icon {
+
+    font-size: 25px;
+    color: rgb(255, 255, 255);
+}
+
+.Form .FormGroup .FormGroup_Box .FormGroup_Box_Input {
+    flex: 1;
+    font-size: 15px;
+    height: 40px;
+    background: transparent;
+    outline: none;
+    border: none;
+}
+
+
+/* :not(:placeholder-shown) */
+.Form .FormGroup .FormGroup_Box .FormGroup_Box_Input:valid,
+.Form .FormGroup .FormGroup_Box .FormGroup_Box_Input:focus {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    padding-inline-start: 10px;
+}
+
+.Form .FormGroup .FormGroup_Box .FormGroup_Box_Input:-webkit-autofill {
+    outline: none;
+    background-color: transparent;
+}
+
+.Form .FormGroup .FormGroup_ErrorMessage {
+    /* width: 100%; */
+    color: #ff6b6b;
+    font-size: 14px;
+    margin-top: 5px;
+
+    font-weight: 500;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+}
+
+.Form .FormButton {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.Form .FormButton .FormButton_Btn {
+
+    padding: 13px 0px;
+    font-size: 17px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    border-radius: 40px;
+    border: none;
+    color: white;
+    background: linear-gradient(90deg, #7b00ff, 70%, #ff00c8);
+    cursor: pointer
+}
+
+.Form .FormButton .FormButton_Btn:hover {
+    background: linear-gradient(90deg, #ff00c8, 70%, #7b00ff);
+    box-shadow: 0 0 15px 5px rgba(255, 0, 200, 0.5);
+    transition: all 0.3s ease;
+}
+
+.Form .FormButton .FormButton_Btn.FormButton_Btn_Reset {
+    background: white;
+    color: black;
+}
+
+@media (max-width: 767px) {
+    .Page {
+        flex-direction: column;
+        height: 100%;
+        gap: 20px;
+    }
+
+    .Page .InfoBox {
+        padding: 50px;
+        /* display: none; */
+        background-color: transparent;
+        box-shadow: none;
+
+    }
+
+    .Page .FormBox {
+        flex: 1;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    .Page .InfoBox .InfoContent .InfoDescription {
+        border: 1px solid red;
+    }
+}

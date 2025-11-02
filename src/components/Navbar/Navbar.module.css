@@ -1,0 +1,115 @@
+.Navbar {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 15px 30px;
+
+    box-shadow: -10px 20px 20px -15px rgba(0, 0, 0, 0.5);
+    border-radius: 18px;
+}
+
+.Navbar .InfoBox {
+    display: flex;
+    flex-direction: column;
+}
+
+.Navbar .InfoBox .InfoContent {
+    display: flex;
+    align-items: center;
+    align-self: center;
+    line-height: 100%;
+    gap: 10px;
+    padding: 10px 0;
+}
+
+
+.Navbar .InfoBox .InfoContent .ToggleSidebarBtn {
+    background-color: transparent;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #555;
+}
+
+
+.Navbar .ProfileBox {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.Navbar .ProfileBox .Content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.Navbar .ProfileBox .Content .Img {
+    border-radius: 50%;
+    object-fit: cover;
+    width: 45px;
+    box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.1);
+}
+
+.Navbar .ProfileBox .Content .Info {
+    display: flex;
+    flex-direction: column;
+    line-height: 100%;
+    white-space: nowrap;
+    font-size: 14px;
+    gap: 3px;
+    text-transform: capitalize;
+}
+
+.Navbar .ProfileBox .Content .Info .Role {
+    font-weight: 500;
+    color: rgb(123, 0, 255, 0.75);
+    text-transform: uppercase;
+}
+
+
+.Navbar .ProfileBox .ProfileBtn {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: rgb(123, 0, 255, 0.75);
+}
+
+
+/* Location  */
+.LocationList {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+
+.LocationList .LocationItem::after {
+    content: "/";
+    margin-left: 8px;
+    color: #ccc;
+}
+
+.LocationList .LocationItem:last-child::after {
+    content: "";
+    margin: 0;
+}
+
+.LocationList .LocationItem:last-child {
+    font-weight: bold;
+    color: rgba(0, 0, 0, 1)
+        /* color: #333; */
+}
+
+.LocationList .LocationItem .LocationTitle {
+    text-transform: capitalize;
+    color: #777;
+}

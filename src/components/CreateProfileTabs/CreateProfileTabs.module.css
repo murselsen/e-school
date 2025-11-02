@@ -1,0 +1,39 @@
+.TabsArea {
+    width: 1200px;
+    height: 650px;
+    background-color: white;
+    border-radius: 18px;
+    display: flex;
+    flex-direction: column;
+}
+
+.TabsArea .Header {
+    height: 60px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.Header .TabList {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+}
+
+.TabList .TabItem {
+    height: 100%;
+    text-align: center;
+    align-content: center;
+    width: 250px;
+}
+
+.TabList .TabItem.active,
+.TabList .TabItem:hover {
+    border-block-end: 1px solid #6200ea;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.TabsArea .Body {
+    padding: 30px;
+
+}

@@ -1,0 +1,19 @@
+.Page {
+    /* background-color: #c17aff; */
+    background: url(../../assets/loginBg.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    user-select: none;
+}
+
+.Logo {
+    width: 75px;
+    height: 75px;
+    object-fit: fill;
+    /* border: 1px solid red; */
+    border-radius: 50%;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.915);
+}

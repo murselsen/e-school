@@ -1,0 +1,85 @@
+.UList_Area {
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.UList_Title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.UList_Grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.User_Box {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 10px 0px;
+    border-radius: 8px;
+    color: rgba(51, 51, 51, 0.65);
+    min-width: 200px;
+    width: 48%;
+}
+
+.User_Box .Footer,
+.User_Box .Header,
+.User_Box .Body {
+    padding: 5px 20px;
+}
+
+.User_Box .Header .Title,
+.User_Box .Header .SubTitle {
+    padding-block: 5px;
+    text-transform: capitalize;
+}
+
+.User_Box .Header .Title {
+    border-bottom: 1px solid rgba(51, 51, 51, 0.1);
+}
+
+.User_Box .Body {
+    padding-block: 10px;
+    border-block: 1px solid rgba(0, 0, 0, 0.846);
+}
+
+.User_Box .Body .DataList {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.User_Box .Body .DataList .DataList_Item::after {
+    border-bottom: 1px solid;
+}
+
+.User_Box span {
+    font-weight: bold;
+    color: rgba(51, 51, 51, 0.95);
+    text-transform: lowercase;
+}
+
+.User_Box .Footer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+}
+
+
+.User_Box .Footer .Button_Delete {
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    text-transform: uppercase;
+    background-color: #f44336;
+}
