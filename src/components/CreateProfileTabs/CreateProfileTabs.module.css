@@ -21,6 +21,10 @@
 
 .TabList .TabItem {
     height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
     text-align: center;
     align-content: center;
     width: 250px;
@@ -42,30 +46,46 @@
     position: relative;
     display: flex;
     flex-wrap: wrap;
-    column-gap : 50px;
-    row-gap: 50px;
+    column-gap: 50px;
     color: black;
-
-    justify-content: space-evenly;
+    height: 100%;
+    justify-content: center;
 }
 
 .TabContent .TabContent_BtnGroup {
     position: absolute;
-    bottom: 20px;
-    right: 20px;
+    bottom: 0;
+    margin: 0 auto;
+    align-self: center;
     display: flex;
     gap: 10px;
+    z-index: 1000;
 }
+
 .TabContent_BtnGroup .TabContent_Btn {
     background-color: white;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2),0 1px 1px rgba(0, 0, 0, 0.14),0 2px 1px rgba(0, 0, 0, 0.12);
-    border-radius: 50%;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2), 0 1px 1px rgba(0, 0, 0, 0.14), 0 2px 1px rgba(0, 0, 0, 0.12);
+    border-radius: 18px;
     color: rgba(98, 0, 234, 0.51);
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    width: 100px;
 }
+
 .TabContent_BtnGroup .TabContent_Btn:hover {
-    box-shadow:0 1px 3px rgba(0, 0, 0, 0.2),0 1px 1px rgba(0, 0, 0, 0.14),0 2px 1px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2), 0 1px 1px rgba(0, 0, 0, 0.14), 0 2px 1px rgba(0, 0, 0, 0.12);
     border-bottom: 2px solid rgba(98, 0, 234, 1);
     color: rgba(98, 0, 234, 1);
+    font-weight: 700;
+}
+
+.TabContent_BtnGroup .TabContent_Btn:last-child {
+    background-color: rgba(98, 0, 234, 0.81);
+    color: white;
 }
 
 
@@ -98,7 +118,7 @@
 }
 
 .FormGroup .FormInput_Group:hover {
-    box-shadow:0 1px 3px rgba(0, 0, 0, 0.2),0 1px 1px rgba(0, 0, 0, 0.14),0 2px 1px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2), 0 1px 1px rgba(0, 0, 0, 0.14), 0 2px 1px rgba(0, 0, 0, 0.12);
     border-bottom: 2px solid rgba(98, 0, 234, 1);
     color: rgba(98, 0, 234, 1);
 }
@@ -109,8 +129,11 @@
     outline: none;
     color: black;
 }
-  .FormGroup.FormTextArea .FormInput_Group, .FormGroup.FormTextArea .FormInput_Group .FormInput{
+
+.FormGroup.FormTextArea .FormInput_Group, .FormGroup.FormTextArea .FormInput_Group .FormInput {
     height: 100px;
 }
 
-
+.FormGroup .FormError {
+    color: red;
+}

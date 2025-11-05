@@ -20,7 +20,7 @@ export const store = configureStore({
         users: usersReducer,
     },
     middleware: (getDefaultMiddleware) =>
-        getDefaultMiddleware({serializableCheck: false})
+        getDefaultMiddleware({serializableCheck: false, thunk: true})
 
 
 });

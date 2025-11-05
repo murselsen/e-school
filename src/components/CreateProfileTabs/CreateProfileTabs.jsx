@@ -2,17 +2,21 @@ import React, {useState} from "react";
 
 import Css from "./CreateProfileTabs.module.css";
 import {useFormikContext, ErrorMessage, Field, FieldArray, Form, Formik} from "formik";
-import {useSelector} from "react-redux";
+import {useSelector, useDispatch} from "react-redux";
 import {
-
-    selectUserRole,
+    selectUserRole
 } from "../../redux/auth/selectors.js";
+import {registerParent} from "../../redux/parent/thunk.js";
+
 import {GrNext, GrFormPrevious, GrFormNext} from "react-icons/gr";
 import {CgProfile} from "react-icons/cg";
 import {BsFillTelephoneFill} from "react-icons/bs";
 import {MdAlternateEmail} from "react-icons/md";
 import {FaRegAddressCard, FaTrash} from "react-icons/fa6";
-
+import {FaStickyNote} from "react-icons/fa";
+import {RiStickyNoteAddLine} from "react-icons/ri";
+import {IoSend} from "react-icons/io5";
+import * as Yup from 'yup';
 
 const CreateProfileTabs = () => {
     const [activeTab, setActiveTab] = useState(1);
@@ -29,6 +33,10 @@ const CreateProfileTabs = () => {
         if (activeTab === 1) {
             return;
         }
+        if (activeTab === -1) {
+            setActiveTab(1);
+            return;
+        }
         setActiveTab(activeTab + -1);
     }
 
@@ -38,28 +46,12 @@ const CreateProfileTabs = () => {
             <ul className={Css.TabList}>
                 <TabItem
                     step={1}
-                    title={"Step 1: Kişisel Bigiler"}
+                    icon={<CgProfile size={24}/>}
+                    title={"Personal Information"}
                     isActive={activeTab === 1}
                     toggleClick={() => setActiveTab(1)}
                 />
-                {userRole === "parent" && (<>
 
-                    <TabItem
-                        step={2}
-                        title={"Step 2: Öğrenci Seçimi"}
-                        isActive={activeTab === 2}
-                        toggleClick={() => {
-                            activeTab > 2 ? setActiveTab(2) : null
-                        }}
-                    />
-
-                </>)}
-                <TabItem
-                    step={-1}
-                    title={"Step 3: Onayla & Kaydet"}
-                    isActive={activeTab === -1}
-
-                />
 
             </ul>
         </div>
@@ -74,82 +66,103 @@ const CreateProfileTabs = () => {
 };
 
 const ParentForm = ({activeTab, stepHandler}) => {
+    const dispatch = useDispatch();
+    const parentFormValidationSchema = Yup.object().shape({
+        firstName: Yup.string().required("Firstname is required"),
+        lastName: Yup.string().required("Lastname is required"),
+        email: Yup.string().email("Invalid email address").required("Email is required"),
+        phone: Yup.string().required("Phone is required"),
+        address: Yup.string().required("Address is required"),
+        notes: Yup.array().of(Yup.string()),
+    })
+    const submitHandler = (values, actions) => {
 
 
+        values.name = values.firstName + " " + values.lastName;
+        dispatch(registerParent(values));
+
+    }
     return (<Formik initialValues={{
         firstName: "", lastName: "", email: "", phone: "", address: "", notes: [],
-    }} onSubmit={(values, {resetForm}) => {
-        console.log(values);
-        resetForm()
-    }}>
-        <Form className={Css.TabContent}>
-            {activeTab === 1 && (<>
-                <div className={Css.FormGroup}>
-                    <label htmlFor={"firstName"} className={Css.FormLabel}>
-                        Firstname: <span>*</span>
-                    </label>
-                    <div className={Css.FormInput_Group}>
-                        <CgProfile size={24} className={Css.FormIcon}/>
-                        <Field name={"firstName"} type={"text"} id={"firstName"} className={Css.FormInput}
-                               required/>
-                    </div>
-                    <ErrorMessage name={"firstName"} className={Css.FormError} component={"span"}/>
-                </div>
-                <div className={Css.FormGroup}>
-                    <label htmlFor={"lastName"} className={Css.FormLabel}>
-                        Lastname: <span>*</span>
-                    </label>
-                    <div className={Css.FormInput_Group}>
-                        <CgProfile size={24} className={Css.FormIcon}/>
-                        <Field name={"lastName"} type={"text"} id={"lastName"} className={Css.FormInput}
-                               required/>
-                    </div>
-                    <ErrorMessage name={"lastName"} className={Css.FormError} component={"span"}/>
-                </div>
-                <div className={Css.FormGroup}>
-                    <label htmlFor={"email"} className={Css.FormLabel}>
-                        Email: <span>*</span>
-                    </label>
-                    <div className={Css.FormInput_Group}>
-                        <MdAlternateEmail size={24} className={Css.FormIcon}/>
-                        <Field name={"email"} type={"email"} id={"email"} className={Css.FormInput} required/>
-                    </div>
-                    <ErrorMessage name={"email"} className={Css.FormError} component={"span"}/>
-                </div>
-                <div className={Css.FormGroup}>
-                    <label htmlFor={"phone"} className={Css.FormLabel}>
-                        Phone: <span>*</span>
-                    </label>
-                    <div className={Css.FormInput_Group}>
-                        <BsFillTelephoneFill size={24} className={Css.FormIcon}/>
-                        <Field name={"phone"} type={"tel"} id={"phone"} className={Css.FormInput} required/>
-                    </div>
-                    <ErrorMessage name={"phone"} className={Css.FormError} component={"span"}/>
-                </div>
-                <div className={[Css.FormGroup, Css.FormTextArea].join(' ')}>
-                    <label htmlFor={"phone"} className={Css.FormLabel}>
-                        Address:
-                    </label>
-                    <div className={Css.FormInput_Group}>
-                        <FaRegAddressCard size={24} className={Css.FormIcon}/>
-                        <textarea name={"address"} type={"textarea"} id={"address"} className={Css.FormInput}
-                                  rows={1} cols={50}/>
-                    </div>
-                    <ErrorMessage name={"phone"} className={Css.FormError} component={"span"}/>
-                </div>
-                <div className={Css.FormGroup}>
-                    <NoteList/>
-                </div>
-            </>)}
-            <div className={Css.TabContent_BtnGroup}>
-                {activeTab > 1 && <button className={Css.TabContent_Btn} onClick={() => stepHandler.beforeHandler()}>
-                    <GrFormPrevious size={30}/>
-                </button>}
+    }} onSubmit={submitHandler} validationSchema={parentFormValidationSchema}>
 
-                <button className={Css.TabContent_Btn} onClick={() => stepHandler.nextHandler()}>
-                    <GrFormNext size={30}/>
+
+        <Form className={Css.TabContent}>
+
+            <div className={Css.FormGroup}>
+                <label htmlFor={"firstName"} className={Css.FormLabel}>
+                    Firstname: <span>*</span>
+                </label>
+                <div className={Css.FormInput_Group}>
+                    <CgProfile size={24} className={Css.FormIcon}/>
+                    <Field name={"firstName"} type={"text"} id={"firstName"} className={Css.FormInput}
+                           placeholder={"Enter Firstname"} required/>
+                </div>
+                <ErrorMessage name={"firstName"} className={Css.FormError} component={"span"}/>
+            </div>
+            <div className={Css.FormGroup}>
+                <label htmlFor={"lastName"} className={Css.FormLabel}>
+                    Lastname: <span>*</span>
+                </label>
+                <div className={Css.FormInput_Group}>
+                    <CgProfile size={24} className={Css.FormIcon}/>
+                    <Field name={"lastName"} type={"text"} id={"lastName"} className={Css.FormInput}
+                           placeholder={"Enter Lastname"} required/>
+                </div>
+                <ErrorMessage name={"lastName"} className={Css.FormError} component={"span"}/>
+            </div>
+            <div className={Css.FormGroup}>
+                <label htmlFor={"email"} className={Css.FormLabel}>
+                    Email: <span>*</span>
+                </label>
+                <div className={Css.FormInput_Group}>
+                    <MdAlternateEmail size={24} className={Css.FormIcon}/>
+                    <Field name={"email"} type={"email"} id={"email"} className={Css.FormInput}
+                           placeholder={"Enter email address"} required/>
+                </div>
+                <ErrorMessage name={"email"} className={Css.FormError} component={"span"}/>
+            </div>
+            <div className={Css.FormGroup}>
+                <label htmlFor={"phone"} className={Css.FormLabel}>
+                    Phone: <span>*</span>
+                </label>
+                <div className={Css.FormInput_Group}>
+                    <BsFillTelephoneFill size={24} className={Css.FormIcon}/>
+                    <Field name={"phone"} type={"tel"} id={"phone"} className={Css.FormInput}
+                           placeholder={"Enter phone number"} required/>
+                </div>
+                <ErrorMessage name={"phone"} className={Css.FormError} component={"span"}/>
+            </div>
+            <div className={[Css.FormGroup, Css.FormTextArea].join(' ')}>
+                <label htmlFor={"phone"} className={Css.FormLabel}>
+                    Address:
+                </label>
+                <div className={Css.FormInput_Group}>
+                    <FaRegAddressCard size={24} className={Css.FormIcon}/>
+                    <Field as={"textarea"} name={"address"} type={"textarea"} id={"address"}
+                           className={Css.FormInput} placeholder={"Enter address"}
+                    />
+                </div>
+                <ErrorMessage name={"phone"} className={Css.FormError} component={"span"}/>
+            </div>
+            <div className={Css.FormGroup}>
+                <label className={Css.FormLabel}>
+                    Notes:
+                </label>
+                <NoteList/>
+            </div>
+            <div className={Css.TabContent_BtnGroup}>
+
+
+                <button type="reset" className={Css.TabContent_Btn}>
+                    <p>Reset </p>
+                </button>
+                <button type="submit" className={Css.TabContent_Btn}>
+                    <p>Save</p>
                 </button>
             </div>
+
+
         </Form>
     </Formik>)
 };
@@ -159,14 +172,17 @@ const NoteList = () => {
     const {values} = useFormikContext(); // Formik context'e direkt erişim
 
     return (<FieldArray name="notes">
-        {({push, remove}) => (<>
-            {values.notes.map((_, index) => (<div key={index} style={{marginBottom: "8px"}}>
+        {({push, remove}) => (<div>
 
+            {values.notes.map((_, index) => (<div key={index} style={{marginBottom: "8px"}}>
+                <div className={Css.FormInput_Group}>
+                    <FaStickyNote className={Css.FormInput_Icon}/>
                     <Field
-                        name={`values.notes[${index}]`}
-                        placeholder="Not Girin"
+                        name={`notes[${index}]`}
+                        placeholder="Enter note"
                         className={Css.FormInput}
                     />
+
                     <button
                         type="button"
                         onClick={() => remove(index)}
@@ -174,18 +190,29 @@ const NoteList = () => {
                     >
                         <FaTrash/>
                     </button>
-                </div>))}
+                </div>
+            </div>))}
 
-            <button type="button" onClick={() => push("default value")}>
-                + Not Ekle
+            <button type="button" onClick={() => push("default value")} style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "8px",
+                marginTop: "8px",
+                marginInlineStart: "15px",
+                cursor: "pointer",
+            }}>
+                <RiStickyNoteAddLine size={30}/> <span>Not Add</span>
             </button>
-        </>)}
+        </div>)}
     </FieldArray>)
 
 }
 
 
-// const TeacherForm = ({activeTab, nextHandler}) => {
+// const TeacherForm = ({
+// activeTab, nextHandler
+// }) =>
+// {
 //     return (<Formik>
 //         <Form className={Css.TabContent}>
 //             {activeTab === 1 && (<div className={Css.TabContent}>
@@ -205,12 +232,12 @@ const NoteList = () => {
 // }
 
 
-const TabItem = ({title, isActive, toggleClick}) => {
+const TabItem = ({title, icon, isActive, toggleClick}) => {
     return (<li
         className={`${Css.TabItem} ${isActive ? Css.active : ""}`}
         onClick={toggleClick}
     >
-        {title}
+        {icon}   <p>{title}</p>
     </li>);
 };
 

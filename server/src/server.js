@@ -11,40 +11,40 @@ import notFoundMiddleware from "./middlewares/notFoundMiddleware.js";
 import serverErrorMiddleware from "./middlewares/serverErrorMiddleware.js";
 
 // Utils
-import { env } from "./utils/env.js";
+import {env} from "./utils/env.js";
 
 const PORT = env("PORT", 5000); // Port
 
 const initServer = async () => {
-  const app = express();
+    const app = express();
 
-  app.use(express.json());
-  app.use(cookieParser());
-  app.use(
-    cors({
-      origin: [
-        "http://localhost:5173",
-        "http://localhost:4173",
-        ,
-        "https://e-school-blond.vercel.app/",
-      ],
-      credentials: true, // cookie gönderimi için şart
-    })
-  );
+    app.use(express.json());
+    app.use(cookieParser());
+    app.use(
+        cors({
+            origin: [
+                "http://localhost:5173",
+                "http://localhost:4173",
 
-  app.use("/", router);
-  app.use("/api", router);
+                "https://e-school-blond.vercel.app/",
+            ],
+            credentials: true, // cookie gönderimi için şart
+        })
+    );
 
-  app.use(notFoundMiddleware);
-  app.use(serverErrorMiddleware);
+    app.use("/", router);
+    app.use("/api", router);
 
-  app.listen(PORT, (error) => {
-    if (error) throw error;
+    app.use(notFoundMiddleware);
+    app.use(serverErrorMiddleware);
 
-    console.log("✅´| Express | Server is running on port: ", PORT);
-  });
+    app.listen(PORT, (error) => {
+        if (error) throw error;
 
-  return app;
+        console.log("✅´| Express | Server is running on port: ", PORT);
+    });
+
+    return app;
 };
 
 export default initServer;
