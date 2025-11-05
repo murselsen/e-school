@@ -40,4 +40,4 @@ Katkıda bulunmak için fork'layıp pull request gönderebilirsiniz.
 
 ## Lisans
 
-MIT
+Apache-2.0 license
