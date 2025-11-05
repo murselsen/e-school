@@ -75,12 +75,16 @@ const ParentForm = ({activeTab, stepHandler}) => {
         address: Yup.string().required("Address is required"),
         notes: Yup.array().of(Yup.string()),
     })
-    const submitHandler = (values, actions) => {
-
-
-        values.name = values.firstName + " " + values.lastName;
-        dispatch(registerParent(values));
-
+    const submitHandler = (values, {resetForm}) => {
+        const parentData = {
+            name: values.firstName + " " + values.lastName,
+            email: values.email,
+            phone: values.phone,
+            address: values.address,
+            notes: values.notes,
+        };
+        dispatch(registerParent(parentData));
+        resetForm();
     }
     return (<Formik initialValues={{
         firstName: "", lastName: "", email: "", phone: "", address: "", notes: [],
